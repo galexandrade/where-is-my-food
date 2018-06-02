@@ -29,11 +29,16 @@ repositories {
 
 
 dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile 'com.h2database:h2'
 	runtime('org.springframework.boot:spring-boot-devtools')
-	runtime('com.h2database:h2')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
+}
+
+bootRun {
+	jvmArgs = ["-Dspring.profiles.active=dev"]
 }
