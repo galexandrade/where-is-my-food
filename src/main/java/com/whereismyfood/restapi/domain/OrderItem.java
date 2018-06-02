@@ -2,9 +2,7 @@ package com.whereismyfood.restapi.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +11,15 @@ import java.util.List;
  */
 @Entity
 @Data
-public class OrderItem extends BaseEntity {
-    @ManyToOne
-    CustomerOrder order;
+public class OrderItem{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne
-    Product product;
-    Integer amount;
+    private CustomerOrder order;
+
+    @ManyToOne
+    private Product product;
+    private Integer amount;
 }

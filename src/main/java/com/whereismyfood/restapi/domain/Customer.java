@@ -2,10 +2,7 @@ package com.whereismyfood.restapi.domain;
 
 import lombok.Data;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,13 +11,17 @@ import java.util.List;
  */
 @Entity
 @Data
-public class Customer extends BaseEntity {
-    String firstName;
-    String lastName;
+public class Customer{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String firstName;
+    private String lastName;
 
     @OneToOne(cascade = CascadeType.ALL)
-    User user;
+    private User user;
 
     @OneToMany(mappedBy = "customer")
-    List<CustomerOrder> orders = new ArrayList<>();
+    private List<CustomerOrder> orders = new ArrayList<>();
 }
