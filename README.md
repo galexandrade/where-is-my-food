@@ -1,0 +1,2 @@
+[![CircleCI](https://circleci.com/gh/galexandrade/where-is-my-food.svg?style=svg)](https://circleci.com/gh/galexandrade/where-is-my-food)
+[![codecov](https://codecov.io/gh/galexandrade/where-is-my-food/branch/master/graph/badge.svg)](https://codecov.io/gh/galexandrade/where-is-my-food)
