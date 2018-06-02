@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Data
 /* To not enter in a cicle reference on Lombok*/
-@EqualsAndHashCode(exclude = {"items", "customer"})
+@EqualsAndHashCode(exclude = {"customer"})
 public class CustomerOrder{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
