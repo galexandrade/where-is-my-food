@@ -1,5 +1,8 @@
 package com.whereismyfood.restapi.domain;
 
+import com.whereismyfood.restapi.domain.Customer;
+import com.whereismyfood.restapi.domain.CustomerOrder;
+import com.whereismyfood.restapi.domain.OrderItem;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

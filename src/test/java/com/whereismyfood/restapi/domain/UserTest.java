@@ -1,5 +1,6 @@
 package com.whereismyfood.restapi.domain;
 
+import com.whereismyfood.restapi.domain.User;
 import com.whereismyfood.restapi.enums.Role;
 import org.junit.Assert;
 import org.junit.Before;

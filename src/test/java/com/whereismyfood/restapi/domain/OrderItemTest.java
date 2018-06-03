@@ -25,7 +25,7 @@ public class OrderItemTest {
     @Test
     public void getId() throws Exception {
         orderItem.setId(ORDER_ITEM_ID);
-        Assert.assertEquals(ORDER_ITEM_ID, orderItem.getId());
+        assertEquals(ORDER_ITEM_ID, orderItem.getId());
     }
 
     @Test
@@ -34,7 +34,7 @@ public class OrderItemTest {
         customerOrder.setId(CUSTOMER_ORDER_ITEM_ID);
         orderItem.setOrder(customerOrder);
 
-        Assert.assertEquals(CUSTOMER_ORDER_ITEM_ID, orderItem.getOrder().getId());
+        assertEquals(CUSTOMER_ORDER_ITEM_ID, orderItem.getOrder().getId());
     }
 
     @Test
@@ -43,13 +43,13 @@ public class OrderItemTest {
         product.setTitle(PRODUCT_TITLE);
         orderItem.setProduct(product);
 
-        Assert.assertEquals(PRODUCT_TITLE, orderItem.getProduct().getTitle());
+        assertEquals(PRODUCT_TITLE, orderItem.getProduct().getTitle());
     }
 
     @Test
     public void getAmount() throws Exception {
         orderItem.setAmount(ORDER_ITEM_AMOUNT);
-        Assert.assertEquals(ORDER_ITEM_AMOUNT, orderItem.getAmount());
+        assertEquals(ORDER_ITEM_AMOUNT, orderItem.getAmount());
     }
 
 }
