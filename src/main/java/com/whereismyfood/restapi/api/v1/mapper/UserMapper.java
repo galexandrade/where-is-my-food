@@ -13,11 +13,7 @@ import org.mapstruct.factory.Mappers;
 public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    //@Mapping(source = "login", target = "login")
-    //@Mapping(source = "password", target = "password")
-    UserDTO userToUserDTO(User user);
+    UserDTO fromUser(User user);
 
-    //@Mapping(source = "login", target = "login")
-    //@Mapping(source = "password", target = "password")
-    User userDTOToUser(UserDTO userDTO);
+    User toUser(UserDTO userDTO);
 }

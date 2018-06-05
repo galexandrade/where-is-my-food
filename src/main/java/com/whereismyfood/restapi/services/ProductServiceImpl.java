@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
                 .findAll()
                 .stream()
                 .map(product -> {
-                    ProductDTO productDTO = productMapper.productToProductDTO(product);
+                    ProductDTO productDTO = productMapper.fromProduct(product);
                     return productDTO;
                 })
                 .collect(Collectors.toList());
@@ -37,19 +37,19 @@ public class ProductServiceImpl implements ProductService {
     public ProductDTO getProductById(Long id) {
         return productRepository
                 .findById(id)
-                .map(productMapper::productToProductDTO)
+                .map(productMapper::fromProduct)
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
     public ProductDTO createNewProduct(ProductDTO productDTO) {
-        Product product = productMapper.productDTOToProduct(productDTO);
+        Product product = productMapper.toProduct(productDTO);
         return this.saveAndReturnDTO(product);
     }
 
     @Override
     public ProductDTO saveProduct(Long id, ProductDTO productDTO) {
-        Product product = productMapper.productDTOToProduct(productDTO);
+        Product product = productMapper.toProduct(productDTO);
         product.setId(id);
 
         return this.saveAndReturnDTO(product);
@@ -75,7 +75,7 @@ public class ProductServiceImpl implements ProductService {
                 product.setPrice(productDTO.getPrice());
             }
 
-            return productMapper.productToProductDTO(productRepository.save(product));
+            return productMapper.fromProduct(productRepository.save(product));
         }).orElseThrow(ResourceNotFoundException::new);
     }
 
@@ -87,7 +87,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductDTO saveAndReturnDTO(Product product) {
         Product savedProduct = productRepository.save(product);
 
-        ProductDTO returnDTO = productMapper.productToProductDTO(savedProduct);
+        ProductDTO returnDTO = productMapper.fromProduct(savedProduct);
 
         return returnDTO;
     }

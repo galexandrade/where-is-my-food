@@ -71,7 +71,7 @@ public class CustomerServiceImplTest {
     public void createNewCustomer() throws Exception {
         //Given
         Customer savedCustomer = CustomerRepositoryTest.createObject();
-        CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(savedCustomer);
+        CustomerDTO customerDTO = customerMapper.fromCustomer(savedCustomer);
 
         //When
         when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
@@ -87,7 +87,7 @@ public class CustomerServiceImplTest {
         Customer savedCustomer = CustomerRepositoryTest.createObject();
         savedCustomer.setId(1L);
 
-        CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(savedCustomer);
+        CustomerDTO customerDTO = customerMapper.fromCustomer(savedCustomer);
 
         //When
         when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);

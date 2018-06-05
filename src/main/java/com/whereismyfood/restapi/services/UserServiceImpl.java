@@ -22,19 +22,19 @@ public class UserServiceImpl implements UserService {
     public UserDTO getUserById(Long id) {
         return userRepository
                 .findById(id)
-                .map(userMapper::userToUserDTO)
+                .map(userMapper::fromUser)
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
     public UserDTO createNewUser(UserDTO userDTO) {
-        User user = userMapper.userDTOToUser(userDTO);
+        User user = userMapper.toUser(userDTO);
         return this.saveAndReturnDTO(user);
     }
 
     @Override
     public UserDTO saveUser(Long id, UserDTO userDTO) {
-        User user = userMapper.userDTOToUser(userDTO);
+        User user = userMapper.toUser(userDTO);
         user.setId(id);
 
         return this.saveAndReturnDTO(user);
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
                 user.setLogin(userDTO.getLogin());
             }
 
-            return userMapper.userToUserDTO(userRepository.save(user));
+            return userMapper.fromUser(userRepository.save(user));
         }).orElseThrow(ResourceNotFoundException::new);
     }
 
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
     private UserDTO saveAndReturnDTO(User user) {
         User savedUser = userRepository.save(user);
 
-        UserDTO returnDTO = userMapper.userToUserDTO(savedUser);
+        UserDTO returnDTO = userMapper.fromUser(savedUser);
 
         return returnDTO;
     }

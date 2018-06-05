@@ -7,8 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Alex P. Andrade on 02/06/2018.
  */
@@ -23,7 +21,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void userToUserDTO() throws Exception {
+    public void fromUser() throws Exception {
         //Given
         User user = new User();
         user.setLogin(USER_LOGIN);
@@ -31,7 +29,7 @@ public class UserMapperTest {
         user.setRole(Role.ADMIN);
 
         //When
-        UserDTO userDTO = userMapper.userToUserDTO(user);
+        UserDTO userDTO = userMapper.fromUser(user);
 
         //Then
         Assert.assertEquals(USER_LOGIN, userDTO.getLogin());
@@ -39,14 +37,14 @@ public class UserMapperTest {
     }
 
     @Test
-    public void userDTOToUser() throws Exception {
+    public void toUser() throws Exception {
         //Given
         UserDTO userDTO = new UserDTO();
         userDTO.setLogin(USER_LOGIN);
         userDTO.setPassword(USER_PASSWORD);
 
         //When
-        User user = userMapper.userDTOToUser(userDTO);
+        User user = userMapper.toUser(userDTO);
 
         //Then
         Assert.assertEquals(USER_LOGIN, user.getLogin());

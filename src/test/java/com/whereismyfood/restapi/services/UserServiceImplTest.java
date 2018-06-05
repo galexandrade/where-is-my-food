@@ -54,7 +54,7 @@ public class UserServiceImplTest {
     public void createNewUser() throws Exception {
         //Given
         User savedUser = UserRepositoryTest.createObject();
-        UserDTO userDTO = userMapper.userToUserDTO(savedUser);
+        UserDTO userDTO = userMapper.fromUser(savedUser);
 
         //When
         when(userRepository.save(any(User.class))).thenReturn(savedUser);
@@ -70,7 +70,7 @@ public class UserServiceImplTest {
         User savedUser = UserRepositoryTest.createObject();
         savedUser.setId(1L);
 
-        UserDTO userDTO = userMapper.userToUserDTO(savedUser);
+        UserDTO userDTO = userMapper.fromUser(savedUser);
 
         //When
         when(userRepository.save(any(User.class))).thenReturn(savedUser);

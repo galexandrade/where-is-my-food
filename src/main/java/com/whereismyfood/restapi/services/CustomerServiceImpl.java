@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .findAll()
                 .stream()
                 .map(customer -> {
-                    CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
+                    CustomerDTO customerDTO = customerMapper.fromCustomer(customer);
                     return customerDTO;
                 })
                 .collect(Collectors.toList());
@@ -37,19 +37,19 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO getCustomerById(Long id) {
         return customerRepository
                 .findById(id)
-                .map(customerMapper::customerToCustomerDTO)
+                .map(customerMapper::fromCustomer)
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
     public CustomerDTO createNewCustomer(CustomerDTO customerDTO) {
-        Customer customer = customerMapper.customerDTOToCustomer(customerDTO);
+        Customer customer = customerMapper.toCustomer(customerDTO);
         return this.saveAndReturnDTO(customer);
     }
 
     @Override
     public CustomerDTO saveCustomer(Long id, CustomerDTO customerDTO) {
-        Customer customer = customerMapper.customerDTOToCustomer(customerDTO);
+        Customer customer = customerMapper.toCustomer(customerDTO);
         customer.setId(id);
 
         return this.saveAndReturnDTO(customer);
@@ -67,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
                 customer.setLastName(customerDTO.getLastName());
             }
 
-            return customerMapper.customerToCustomerDTO(customerRepository.save(customer));
+            return customerMapper.fromCustomer(customerRepository.save(customer));
         }).orElseThrow(ResourceNotFoundException::new);
     }
 
@@ -79,7 +79,7 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerDTO saveAndReturnDTO(Customer customer) {
         Customer savedCustomer = customerRepository.save(customer);
 
-        CustomerDTO returnDTO = customerMapper.customerToCustomerDTO(savedCustomer);
+        CustomerDTO returnDTO = customerMapper.fromCustomer(savedCustomer);
 
         return returnDTO;
     }

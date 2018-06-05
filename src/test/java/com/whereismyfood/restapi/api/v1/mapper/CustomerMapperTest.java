@@ -15,14 +15,14 @@ public class CustomerMapperTest {
     CustomerMapper customerMapper = CustomerMapper.INSTANCE;
 
     @Test
-    public void customerToCustomerDTO() throws Exception {
+    public void fromCustomer() throws Exception {
         //Given
         Customer customer = new Customer();
         customer.setFirstName(CUSTOMER_FIRST_NAME);
         customer.setLastName(CUSTOMER_LAST_NAME);
 
         //When
-        CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
+        CustomerDTO customerDTO = customerMapper.fromCustomer(customer);
 
         //When
         Assert.assertEquals(CUSTOMER_FIRST_NAME, customerDTO.getFirstName());
@@ -30,14 +30,14 @@ public class CustomerMapperTest {
     }
 
     @Test
-    public void customerDTOToCustomer() throws Exception {
+    public void toCustomer() throws Exception {
         //Given
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setFirstName(CUSTOMER_FIRST_NAME);
         customerDTO.setLastName(CUSTOMER_LAST_NAME);
 
         //When
-        Customer customer = customerMapper.customerDTOToCustomer(customerDTO);
+        Customer customer = customerMapper.toCustomer(customerDTO);
 
         //When
         Assert.assertEquals(CUSTOMER_FIRST_NAME, customer.getFirstName());

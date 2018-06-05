@@ -2,11 +2,8 @@ package com.whereismyfood.restapi.api.v1.mapper;
 
 import com.whereismyfood.restapi.api.v1.model.ProductDTO;
 import com.whereismyfood.restapi.domain.Product;
-import com.whereismyfood.restapi.repositories.ProductRepositoryTest;
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Alex P. Andrade on 03/06/2018.
@@ -20,7 +17,7 @@ public class ProductMapperTest {
     ProductMapper productMapper = ProductMapper.INSTANCE;
 
     @Test
-    public void productToProductDTO() throws Exception {
+    public void fromProduct() throws Exception {
         //Given
         Product product = new Product();
         product.setTitle(PRODUCT_TITLE);
@@ -29,7 +26,7 @@ public class ProductMapperTest {
         product.setPrice(PRODUCT_PRICE);
 
         //When
-        ProductDTO productDTO = productMapper.productToProductDTO(product);
+        ProductDTO productDTO = productMapper.fromProduct(product);
 
         //Then
         Assert.assertEquals(product.getTitle(), productDTO.getTitle());
@@ -39,7 +36,7 @@ public class ProductMapperTest {
     }
 
     @Test
-    public void productDTOToProduct() throws Exception {
+    public void toProduct() throws Exception {
         //Given
         ProductDTO productDTO = new ProductDTO();
         productDTO.setTitle(PRODUCT_TITLE);
@@ -48,7 +45,7 @@ public class ProductMapperTest {
         productDTO.setPrice(PRODUCT_PRICE);
 
         //When
-        Product product = productMapper.productDTOToProduct(productDTO);
+        Product product = productMapper.toProduct(productDTO);
 
         //Then
         Assert.assertEquals(productDTO.getTitle(), product.getTitle());

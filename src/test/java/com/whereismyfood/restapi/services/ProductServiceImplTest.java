@@ -18,7 +18,6 @@ import java.util.List;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -72,7 +71,7 @@ public class ProductServiceImplTest {
     public void createNewProduct() throws Exception {
         //Given
         Product savedProduct = ProductRepositoryTest.createObject();
-        ProductDTO productDTO = productMapper.productToProductDTO(savedProduct);
+        ProductDTO productDTO = productMapper.fromProduct(savedProduct);
 
         //When
         when(productRepository.save(any(Product.class))).thenReturn(savedProduct);
@@ -88,7 +87,7 @@ public class ProductServiceImplTest {
         Product savedProduct = ProductRepositoryTest.createObject();
         savedProduct.setId(1L);
 
-        ProductDTO productDTO = productMapper.productToProductDTO(savedProduct);
+        ProductDTO productDTO = productMapper.fromProduct(savedProduct);
 
         //When
         when(productRepository.save(any(Product.class))).thenReturn(savedProduct);
