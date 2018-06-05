@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -24,6 +25,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class CustomerOrderRepositoryTest {
+
     public static final int ORDER_ITEM_AMOUNT = 3;
 
     public static final String PRODUCT_TITLE = "BBQ Beef Brisket Sandwiches";
@@ -45,6 +47,40 @@ public class CustomerOrderRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
+    }
+
+    @Test
+    public void findByCustomerById() throws Exception {
+        //Given
+        Customer customer1 = this.createCustomer();
+        Customer customer2 = this.createCustomer();
+
+        Product product = this.createProduct();
+
+        CustomerOrder customerOrder1 = CustomerOrderRepositoryTest.createObject(
+                customer1,
+                product
+        );
+
+        CustomerOrder customerOrder2 = CustomerOrderRepositoryTest.createObject(
+                customer1,
+                product
+        );
+
+        CustomerOrder customerOrder3 = CustomerOrderRepositoryTest.createObject(
+                customer2,
+                product
+        );
+
+        customerOrderRepository.saveAll(Arrays.asList(customerOrder1, customerOrder2, customerOrder3));
+
+        //When
+        List<CustomerOrder> ordersCustomer1 = customerOrderRepository.findByCustomerId(1L);
+        List<CustomerOrder> ordersCustomer2 = customerOrderRepository.findByCustomerId(2L);
+
+        //Then
+        Assert.assertEquals(2, ordersCustomer1.size());
+        Assert.assertEquals(1, ordersCustomer2.size());
     }
 
     @Test
