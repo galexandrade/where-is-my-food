@@ -47,6 +47,7 @@ public class CustomerOrderRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
+
     }
 
     @Test
@@ -75,8 +76,8 @@ public class CustomerOrderRepositoryTest {
         customerOrderRepository.saveAll(Arrays.asList(customerOrder1, customerOrder2, customerOrder3));
 
         //When
-        List<CustomerOrder> ordersCustomer1 = customerOrderRepository.findByCustomerId(1L);
-        List<CustomerOrder> ordersCustomer2 = customerOrderRepository.findByCustomerId(2L);
+        List<CustomerOrder> ordersCustomer1 = customerOrderRepository.findByCustomerId(customer1.getId());
+        List<CustomerOrder> ordersCustomer2 = customerOrderRepository.findByCustomerId(customer2.getId());
 
         //Then
         Assert.assertEquals(2, ordersCustomer1.size());
