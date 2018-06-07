@@ -1,14 +1,15 @@
 package com.whereismyfood.restapi.services;
 
 import com.whereismyfood.restapi.api.v1.mapper.CustomerOrderMapper;
-import com.whereismyfood.restapi.api.v1.model.CustomerDTO;
 import com.whereismyfood.restapi.api.v1.model.CustomerOrderDTO;
 import com.whereismyfood.restapi.domain.Customer;
 import com.whereismyfood.restapi.domain.CustomerOrder;
 import com.whereismyfood.restapi.exceptions.ResourceNotFoundException;
 import com.whereismyfood.restapi.repositories.CustomerOrderRepository;
+import com.whereismyfood.restapi.repositories.CustomerRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -17,10 +18,12 @@ import java.util.stream.Collectors;
 public class CustomerOrderServiceImpl implements CustomerOrderService {
     private final CustomerOrderMapper customerOrderMapper;
     private final CustomerOrderRepository customerOrderRepository;
+    private final CustomerRepository customerRepository;
 
-    public CustomerOrderServiceImpl(CustomerOrderMapper customerOrderMapper, CustomerOrderRepository customerOrderRepository) {
+    public CustomerOrderServiceImpl(CustomerOrderMapper customerOrderMapper, CustomerOrderRepository customerOrderRepository, CustomerRepository customerRepository) {
         this.customerOrderMapper = customerOrderMapper;
         this.customerOrderRepository = customerOrderRepository;
+        this.customerRepository = customerRepository;
     }
 
     @Override
@@ -56,22 +59,24 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
     }
 
     @Override
-    public CustomerOrderDTO createNewCustomerOrder(CustomerOrderDTO customerOrderDTO) {
+    public CustomerOrderDTO createNewCustomerOrder(Long idCustomer, CustomerOrderDTO customerOrderDTO) {
+        Optional<Customer> customer = customerRepository.findById(idCustomer);
+
+        if(!customer.isPresent())
+            new ResourceNotFoundException();
+
         CustomerOrder customerOrder = customerOrderMapper.toCustomerOrder(customerOrderDTO);
+        customerOrder.getCustomer().setId(customer.get().getId());
+
         return this.saveAndReturnDTO(customerOrder);
     }
 
     @Override
-    public CustomerOrderDTO saveCustomer(Long id, CustomerOrderDTO customerOrderDTO) {
+    public CustomerOrderDTO saveCustomerOrder(Long id, CustomerOrderDTO customerOrderDTO) {
         CustomerOrder customerOrder = customerOrderMapper.toCustomerOrder(customerOrderDTO);
         customerOrder.setId(id);
 
         return this.saveAndReturnDTO(customerOrder);
-    }
-
-    @Override
-    public CustomerDTO patchCustomerOrder(Long id, CustomerOrderDTO customerOrderDTO) {
-        return null;
     }
 
     @Override

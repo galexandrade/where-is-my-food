@@ -15,11 +15,9 @@ public interface CustomerOrderService {
 
     CustomerOrderDTO getCustomerOrderById(Long id);
 
-    CustomerOrderDTO createNewCustomerOrder(CustomerOrderDTO customerOrderDTO);
+    CustomerOrderDTO createNewCustomerOrder(Long idCustomer, CustomerOrderDTO customerOrderDTO);
 
-    CustomerOrderDTO saveCustomer(Long id, CustomerOrderDTO customerOrderDTO);
-
-    CustomerDTO patchCustomerOrder(Long id, CustomerOrderDTO customerOrderDTO);
+    CustomerOrderDTO saveCustomerOrder(Long id, CustomerOrderDTO customerOrderDTO);
 
     void deleteCustomerOrderById(Long id);
 }
