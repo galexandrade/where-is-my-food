@@ -34,7 +34,7 @@ public class UserServiceImplTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        userService = new UserServiceImpl(userMapper, userRepository);
+        userService = new UserServiceImpl(userRepository);
     }
 
     @Test

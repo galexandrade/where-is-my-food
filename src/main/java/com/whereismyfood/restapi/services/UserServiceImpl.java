@@ -5,16 +5,17 @@ import com.whereismyfood.restapi.api.v1.model.UserDTO;
 import com.whereismyfood.restapi.domain.User;
 import com.whereismyfood.restapi.exceptions.ResourceNotFoundException;
 import com.whereismyfood.restapi.repositories.UserRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by Alex P. Andrade on 04/06/2018.
  */
+@Service
 public class UserServiceImpl implements UserService {
-    private final UserMapper userMapper;
+    private final UserMapper userMapper = UserMapper.INSTANCE;
     private final UserRepository userRepository;
 
-    public UserServiceImpl(UserMapper userMapper, UserRepository userRepository) {
-        this.userMapper = userMapper;
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

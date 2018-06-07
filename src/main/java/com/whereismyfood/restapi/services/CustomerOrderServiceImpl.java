@@ -7,6 +7,7 @@ import com.whereismyfood.restapi.domain.CustomerOrder;
 import com.whereismyfood.restapi.exceptions.ResourceNotFoundException;
 import com.whereismyfood.restapi.repositories.CustomerOrderRepository;
 import com.whereismyfood.restapi.repositories.CustomerRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,13 +16,13 @@ import java.util.stream.Collectors;
 /**
  * Created by Alex P. Andrade on 04/06/2018.
  */
+@Service
 public class CustomerOrderServiceImpl implements CustomerOrderService {
-    private final CustomerOrderMapper customerOrderMapper;
+    private final CustomerOrderMapper customerOrderMapper = CustomerOrderMapper.INSTANCE;
     private final CustomerOrderRepository customerOrderRepository;
     private final CustomerRepository customerRepository;
 
-    public CustomerOrderServiceImpl(CustomerOrderMapper customerOrderMapper, CustomerOrderRepository customerOrderRepository, CustomerRepository customerRepository) {
-        this.customerOrderMapper = customerOrderMapper;
+    public CustomerOrderServiceImpl(CustomerOrderRepository customerOrderRepository, CustomerRepository customerRepository) {
         this.customerOrderRepository = customerOrderRepository;
         this.customerRepository = customerRepository;
     }

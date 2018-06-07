@@ -5,6 +5,7 @@ import com.whereismyfood.restapi.api.v1.model.ProductDTO;
 import com.whereismyfood.restapi.domain.Product;
 import com.whereismyfood.restapi.exceptions.ResourceNotFoundException;
 import com.whereismyfood.restapi.repositories.ProductRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,12 +13,12 @@ import java.util.stream.Collectors;
 /**
  * Created by Alex P. Andrade on 03/06/2018.
  */
+@Service
 public class ProductServiceImpl implements ProductService {
-    private final ProductMapper productMapper;
+    private final ProductMapper productMapper = ProductMapper.INSTANCE;
     private final ProductRepository productRepository;
 
-    public ProductServiceImpl(ProductMapper productMapper, ProductRepository productRepository) {
-        this.productMapper = productMapper;
+    public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 

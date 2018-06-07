@@ -37,7 +37,7 @@ public class ProductServiceImplTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        productService = new ProductServiceImpl(productMapper, productRepository);
+        productService = new ProductServiceImpl(productRepository);
     }
 
     @Test

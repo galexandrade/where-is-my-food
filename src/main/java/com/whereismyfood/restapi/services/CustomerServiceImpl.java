@@ -5,6 +5,7 @@ import com.whereismyfood.restapi.api.v1.model.CustomerDTO;
 import com.whereismyfood.restapi.domain.Customer;
 import com.whereismyfood.restapi.exceptions.ResourceNotFoundException;
 import com.whereismyfood.restapi.repositories.CustomerRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,12 +13,12 @@ import java.util.stream.Collectors;
 /**
  * Created by Alex P. Andrade on 04/06/2018.
  */
+@Service
 public class CustomerServiceImpl implements CustomerService {
-    private final CustomerMapper customerMapper;
+    private final CustomerMapper customerMapper = CustomerMapper.INSTANCE;
     private final CustomerRepository customerRepository;
 
-    public CustomerServiceImpl(CustomerMapper customerMapper, CustomerRepository customerRepository) {
-        this.customerMapper = customerMapper;
+    public CustomerServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 

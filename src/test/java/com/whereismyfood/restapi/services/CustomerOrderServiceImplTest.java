@@ -45,7 +45,7 @@ public class CustomerOrderServiceImplTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        customerOrderService = new CustomerOrderServiceImpl(customerOrderMapper, customerOrderRepository, customerRepository);
+        customerOrderService = new CustomerOrderServiceImpl(customerOrderRepository, customerRepository);
     }
 
     @Test
