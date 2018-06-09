@@ -34,5 +34,28 @@ public class ProductController {
         return productService.getProductById(id);
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProductDTO createNewProduct(@RequestBody ProductDTO productDTO){
+        return productService.createNewProduct(productDTO);
+    }
+
+    @PutMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public ProductDTO updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO){
+        return productService.saveProduct(id, productDTO);
+    }
+
+    @PatchMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public ProductDTO patchProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO){
+        return productService.patchProduct(id, productDTO);
+    }
+
+    @DeleteMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteProduct(@PathVariable Long id){
+        productService.deleteProductById(id);
+    }
 
 }
