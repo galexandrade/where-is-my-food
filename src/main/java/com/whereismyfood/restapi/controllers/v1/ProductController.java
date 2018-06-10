@@ -3,6 +3,8 @@ package com.whereismyfood.restapi.controllers.v1;
 import com.whereismyfood.restapi.api.v1.model.ProductDTO;
 import com.whereismyfood.restapi.api.v1.model.ProductListDTO;
 import com.whereismyfood.restapi.services.ProductService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,7 @@ import javax.websocket.server.PathParam;
  */
 @RestController
 @RequestMapping(ProductController.BASE_URL)
+@Api(description = "Product Controller")
 public class ProductController {
     public static final String BASE_URL = "/api/v1/products";
 
@@ -24,6 +27,7 @@ public class ProductController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Get a list of products.")
     public ProductListDTO getAllProducts(){
         return new ProductListDTO(productService.getAllProducts());
     }

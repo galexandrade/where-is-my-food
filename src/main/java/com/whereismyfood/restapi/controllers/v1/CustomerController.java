@@ -3,6 +3,7 @@ package com.whereismyfood.restapi.controllers.v1;
 import com.whereismyfood.restapi.api.v1.model.CustomerDTO;
 import com.whereismyfood.restapi.api.v1.model.CustomerListDTO;
 import com.whereismyfood.restapi.services.CustomerService;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(CustomerController.BASE_URL)
+@Api(description = "Customer Controller - Swagger")
 public class CustomerController {
     public static final String BASE_URL = "/api/v1/customers";
 
