@@ -16,6 +16,7 @@ This a API to manage:
  * TDD (JUnit, Mokito)
  * MapStruct
  * Project Lombok
+ * Swagger
  * CircleCI
  * Codcov.io
  
