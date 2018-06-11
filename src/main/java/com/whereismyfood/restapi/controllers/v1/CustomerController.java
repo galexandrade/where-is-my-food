@@ -5,6 +5,7 @@ import com.whereismyfood.restapi.api.v1.model.CustomerListDTO;
 import com.whereismyfood.restapi.services.CustomerService;
 import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(CustomerController.BASE_URL)
 @Api(description = "Customer Controller - Swagger")
 public class CustomerController {
-    public static final String BASE_URL = "/api/v1/customers";
+    public static final String BASE_URL = "/api/v1/secure/customers";
 
     private final CustomerService customerService;
 
@@ -36,6 +37,7 @@ public class CustomerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasRole('ADMIN')")
     public CustomerDTO createNewCustomer(@RequestBody CustomerDTO productDTO){
         return customerService.createNewCustomer(productDTO);
     }

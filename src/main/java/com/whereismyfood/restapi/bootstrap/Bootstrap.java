@@ -43,7 +43,7 @@ public class Bootstrap  implements ApplicationListener<ContextRefreshedEvent> {
     private void createCustomerData(){
         User user = new User();
         user.setLogin("g.alex.andrade@gmail.com");
-        user.setPassword("MySecretKey");
+        user.setPassword("123456");
         user.setRole(Role.CUSTOMER);
 
         Customer customer = new Customer();

@@ -17,7 +17,7 @@ import javax.websocket.server.PathParam;
 @RequestMapping(ProductController.BASE_URL)
 @Api(description = "Product Controller")
 public class ProductController {
-    public static final String BASE_URL = "/api/v1/products";
+    public static final String BASE_URL = "/api/v1/secure/products";
 
     private final ProductService productService;
 

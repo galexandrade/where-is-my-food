@@ -3,15 +3,14 @@
 
 **Where is my food API**
 
-This a API to manage:
+This is an API to manage:
  * Products;
  * Customers;
  * Orders;
  
- Live: https://where-is-my-food.herokuapp.com/swagger-ui.html
- 
  Technologies applied:
  * Springboot
+ * JWT
  * M2 Database
  * TDD (JUnit, Mokito)
  * MapStruct
@@ -20,4 +19,8 @@ This a API to manage:
  * CircleCI
  * Codcov.io
  
+ Live: https://where-is-my-food.herokuapp.com/swagger-ui.html
  
+ How to use:
+ 1 - Authenticate
+ 2 - 

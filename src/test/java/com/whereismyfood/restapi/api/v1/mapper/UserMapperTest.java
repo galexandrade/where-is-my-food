@@ -33,7 +33,6 @@ public class UserMapperTest {
 
         //Then
         Assert.assertEquals(USER_LOGIN, userDTO.getLogin());
-        Assert.assertEquals(USER_PASSWORD, userDTO.getPassword());
     }
 
     @Test
@@ -48,7 +47,6 @@ public class UserMapperTest {
 
         //Then
         Assert.assertEquals(USER_LOGIN, user.getLogin());
-        Assert.assertEquals(USER_PASSWORD, user.getPassword());
     }
 
 }
